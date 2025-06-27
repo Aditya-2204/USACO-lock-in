@@ -30,12 +30,12 @@ int main(){
     int minLiars = n;
 
     for(int pos : positions){
-        if(pos < 0 || pos > 1e9) continue;
+        if(pos < 0 || pos > 1e9) continue; //Remove any illegal values
 
         int liars = 0;
         for(auto &pr : constraints){
             if(pr.first == 'G'){
-                if(pos < pr.second) liars++;
+                if(pos < pr.second) liars++; //If the currently viewed sample position is less than location even when it says 'greater than', increase liar by 1.
             }
             if(pr.first == 'L'){
                 if(pos > pr.second) liars++;
