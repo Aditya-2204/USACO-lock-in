@@ -5,47 +5,34 @@ TASK: combo
 */
 
 #include <iostream>
-#include <vector>
-#include <set>
-
 using namespace std;
 
-int wrap(int x, int N) {
-    if (x < 1) return x+N;
-    if (x > N) return x-N;
-    return x;
-}
-
 int main() {
-
     freopen("combo.in","r",stdin);
     freopen("combo.out","w",stdout);
 
-
-    int N; cin >> N;
-    int fj[3]; int m[3];
+    int N;
+    cin >> N;
+    int fj[3], m[3];
 
     for(int i=0;i<3;i++) cin >> fj[i];
     for(int i=0;i<3;i++) cin >> m[i];
 
-    set<tuple<int, int, int>> set;
+    auto is_close = [&](int a, int b) {
+        int diff = abs(a-b);
+        return diff <=2 || diff >= N-2;
+    };
 
-    for(int a=-2;a<3;a++){
-        for(int b=-2;b<3;b++){
-            for(int c=-2;c<3;c++) {
-                set.insert({wrap(m[0]+a,N), wrap(m[1]+b,N), wrap(m[2]+c,N)});
+    int total =0;
+    for(int i=1;i<=N;i++){
+        for(int j=1;j<=N;j++){
+            for(int k=1;k<=N;k++){
+                bool close_fj = is_close(i,fj[0]) && is_close(j,fj[1]) && is_close(k,fj[2]);
+                bool close_m = is_close(i,m[0]) && is_close(j,m[1]) && is_close(k,m[2]);
+                if(close_fj || close_m)
+                    total++;
             }
         }
     }
-
-
-    for(int a=-2;a<3;a++){
-        for(int b=-2;b<3;b++){
-            for(int c=-2;c<3;c++) {
-                set.insert({wrap(fj[0]+a,N), wrap(fj[1]+b,N), wrap(fj[2]+c,N)});
-            }
-        }
-    }
-
-    cout << set.size() << endl;
+    cout<<total<<endl;
 }

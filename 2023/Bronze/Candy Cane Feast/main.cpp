@@ -1,35 +1,51 @@
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
-int height_boost(int candy_cane_height, int candy_cane_elevation, int cow_height) {
-    int drop = candy_cane_elevation-candy_cane_height;
-    return max(0, cow_height-drop);
-} 
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-int main(){
-    int N, M; cin >> N >> M;
-    vector<int> heightOfCows(N);
-    vector<int> heightOfCandyCanes(M);
+    int N, M;
+    cin >> N >> M;
+    vector<long long> cowHeight(N);
+    vector<long long> candyHeight(M);
 
-    for(int i=0;i<N;i++){
-        cin >> heightOfCows[i];
+    for (int i = 0; i < N; ++i) {
+        cin >> cowHeight[i];
     }
-    for(int i=0;i<M;i++){
-        cin >> heightOfCandyCanes[i];
+    for (int i = 0; i < M; ++i) {
+        cin >> candyHeight[i];
     }
 
-    for(int i=0;i<M;i++) {
-        int elevation = heightOfCandyCanes[i];
-        for(int j=0;j<N;j++){
-            int change = height_boost(heightOfCandyCanes[i],elevation,heightOfCows[j]);
-            heightOfCandyCanes[i]-=change;
-            heightOfCows[j]+=change;
+    vector<long long> eaten(N, 0);
+
+    for (int i = 0; i < M; ++i) {
+        long long cane = candyHeight[i];
+        long long current_base = 0;
+
+        fill(eaten.begin(), eaten.end(), 0); // Reset eaten this round
+
+        for (int j = 0; j < N; ++j) {
+            if (current_base >= cane) {
+                break; // No more candy left to eat
+            }
+
+            if (current_base >= cowHeight[j]) {
+                eaten[j] = 0;
+            } else {
+                eaten[j] = min(cowHeight[j], cane) - current_base;
+                current_base += eaten[j];
+            }
+        }
+
+        // Update cow heights
+        for (int j = 0; j < N; ++j) {
+            cowHeight[j] += eaten[j];
         }
     }
 
-    for(auto& cow: heightOfCows) {
-        cout << cow << endl;
+    for (auto h : cowHeight) {
+        cout << h << '\n';
     }
 }
