@@ -3,3 +3,8 @@
 /BFS.cpp
 /Dijkstra
 /Heap
+
+main
+.DS_STORE/
+*.in
+*.out
