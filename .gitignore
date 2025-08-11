@@ -5,6 +5,7 @@
 /Heap
 
 main
+main.dSYM
 .DS_STORE/
 *.in
 *.out
