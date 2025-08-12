@@ -37,4 +37,4 @@ Henrietta 5
 
 In this example, Bessie, Elsie, and Daisy all tie for the minimum by each producing 7 units of milk. The next-largest production, 9 units, is due to Henrietta.
 
-Problem credits: Brian Dean
+#### Problem credits: Brian Dean
