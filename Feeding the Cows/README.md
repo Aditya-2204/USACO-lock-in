@@ -7,12 +7,12 @@ Since all the cows are hungry, FJ decides to plant grassy patches on some of the
 
 Each cow is willing to move a maximum of K (0≤K≤N−1) positions to reach a patch. Find the minimum number of patches needed to feed all the cows. Also, print a configuration of patches that uses the minimum amount of patches needed to feed the cows. Any configuration that satisfies the above conditions will be considered correct.
 
-INPUT FORMAT (input arrives from the terminal / stdin):
+INPUT FORMAT (input arrives from the terminal / `stdin`):
 
 Each input contains T test cases, each describing an arrangement of cows. The first line of input contains T (1≤T≤10). Each of the T test cases follow.
 Each test case starts with a line containing N and K. The next line will contain a string of length N, where each character denotes the breed of the ith cow (G meaning Guernsey and H meaning Holstein).
 
-OUTPUT FORMAT (print output to the terminal / stdout):
+OUTPUT FORMAT (print output to the terminal / `stdout`):
 
 For each of the T test cases, please write two lines of output. For the first line, print the minimum number of patches needed to feed the cows. For the second line, print a string of length N that describes a configuration that feeds all the cows with the minimum number of patches. The ith character, describing the ith position, should be a '.' if there is no patch, a 'G' if there is a patch that feeds Guernseys, and a 'H' if it feeds Holsteins. Any valid configuration will be accepted.
 ### SAMPLE INPUT:
